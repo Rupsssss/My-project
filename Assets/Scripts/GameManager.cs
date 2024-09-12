@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     public int currentScore;
     public int scorePerNote = 100;
 
+    public int currentMultiplier;
+    public int multiplierTracker;
+    public int[] multiplierThresholds;
+
     public Text scoreText;
     public Text multiText;
 
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         scoreText.text = "Score: 0";
+        currentMultiplier = 1; 
     }
 
     // Update is called once per frame
@@ -40,7 +45,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Hit On Time");
 
-        currentScore += scorePerNote;
+        multiplierTracker++;
+
+        currentScore += scorePerNote * currentMultiplier;
         scoreText.text = "Score: " + currentScore;
     }
     public void NoteMissed()
