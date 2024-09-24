@@ -23,13 +23,21 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text multiText;
 
+    public float totalNotes;
+    public float normalHits;
+    public float goodHits;
+    public float perfectHits;
+    public float missedHits;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
 
         scoreText.text = "Score: 0";
-        currentMultiplier = 1; 
+        currentMultiplier = 1;
+
+        totalNotes = FindObjectsOfType<NoteObject>().Length;
     }
 
     // Update is called once per frame
@@ -71,28 +79,29 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerNote + currentScore;
         NoteHit();
+        normalHits++;
     }
 
     public void GoodHit()
     {
         currentScore += scorePerGoodNote + currentScore;
         NoteHit();
+        goodHits++;
     }
 
     public void PerfectHit()
     {
         currentScore += scorePerPerfectNote + currentScore;
         NoteHit();
+        perfectHits++;
     }
 
-    public void NoteMissed()
-    {
+    public void NoteMissed() {
         Debug.Log("Missed Note");
-
         currentMultiplier = 1;
         multiplierTracker = 0;
-
         multiText.text = "Multiplier: x" + currentMultiplier;
-       
+
+        missedHits++;
     }
 }

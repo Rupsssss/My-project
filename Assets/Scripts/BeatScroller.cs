@@ -9,8 +9,7 @@ public class BeatScoller : MonoBehaviour
     public bool hasStarted;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         beatTempo = beatTempo / 60f;
     }
 
